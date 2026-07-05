@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMLOCK SENSI V12</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { background-color: #0d0d12; color: #ffffff; font-family: sans-serif; margin: 0; padding: 20px; padding-bottom: 80px; }
+        
+        /* Header */
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .title { font-size: 22px; font-weight: bold; color: #ff3366; }
+        .status-tag { background: #1a1a24; padding: 4px 10px; border-radius: 12px; font-size: 12px; color: #00ff9d; }
+        .login-btn { background: #1a1a24; padding: 8px 16px; border-radius: 20px; color: #00ff9d; font-weight: bold; cursor: pointer; border: 1px solid #333; }
+        
+        /* Modules */
+        .system-modules { font-size: 14px; color: #888; margin-bottom: 15px; }
+        .card { background: #1a1a24; border-radius: 16px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .card-info h3 { margin: 0; font-size: 16px; color: white; }
+        .card-info p { margin: 4px 0 0 0; font-size: 13px; color: #a0a0a0; }
+        .status-text { font-size: 12px; color: #666; margin-top: 5px; }
+        
+        /* Interactive Toggle */
+        .toggle-btn { width: 50px; height: 50px; border-radius: 50%; border: 3px solid #333; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        .toggle-btn.active { border-color: #00ff9d; color: #00ff9d; }
+        
+        /* Navigation */
+        .navbar { position: fixed; bottom: 0; left: 0; width: 100%; background: #0d0d12; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #222; }
+        .nav-item { text-align: center; color: #555; font-size: 12px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo-area">
+        <div class="title">AIMLOCK SENSI V12</div>
+        <div class="status-tag">● Đã kích hoạt</div>
+    </div>
+    <div class="login-btn">LOGIN</div>
+</div>
+
+<div class="system-modules">⚡ SYSTEM MODULES</div>
+
+<div id="module-container"></div>
+
+<div class="navbar">
+    <div class="nav-item">🏠<br>HOME</div>
+    <div class="nav-item">ℹ️<br>INFO</div>
+    <div class="nav-item">👑</div>
+    <div class="nav-item">⚙️<br>CÀI ĐẶT</div>
+    <div class="nav-item">⚡<br>Visual</div>
+</div>
+
+<script>
+    const modules = [
+        { title: "Game Booster", desc: "Tối ưu hóa RAM & CPU cho game" },
+        { title: "Super Aimlock", desc: "Kéo Nhẹ Tâm Tự Ghim Đầu" },
+        { title: "Network Optimizer", desc: "Giảm ping, tăng tốc độ kết nối" },
+        { title: "Trick Head", desc: "Tâm Luôn Giữ Vùng Đầu Khi Kéo" },
+        { title: "Sensi Boost", desc: "Tối ưu độ nhạy cảm ứng siêu mượt" },
+        { title: "Aim Super", desc: "Ngắm bắn chuẩn xác cực kỳ nhanh" },
+        { title: "Touch Pro", desc: "Cảm ứng chuyên nghiệp không trễ lag" }
+    ];
+
+    const container = document.getElementById('module-container');
+
+    modules.forEach(mod => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+            <div class="card-info">
+                <h3>${mod.title}</h3>
+                <p>${mod.desc}</p>
+                <div class="status-text">● Chưa bật</div>
+            </div>
+            <div class="toggle-btn" onclick="toggle(this)">⏻</div>
+        `;
+        container.appendChild(div);
+    });
+
+    function toggle(el) {
+        el.classList.toggle('active');
+        const status = el.previousElementSibling.querySelector('.status-text');
+        status.innerText = el.classList.contains('active') ? "● Đã bật" : "● Chưa bật";
+        status.style.color = el.classList.contains('active') ? "#00ff9d" : "#666";
+    }
+</script>
+
+</body>
+</html>
